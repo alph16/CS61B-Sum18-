@@ -81,8 +81,15 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        if (A == null) {
+            return B;
+        }
+        IntList temp = A;
+        while (temp.rest != null) {
+            temp = temp.rest;
+        }
+        temp.rest = B;
+        return A;
     }
 
     /**
@@ -90,8 +97,25 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        if (A == null) {
+            IntList result = new IntList(B.first, null);
+            return result;
+        }
+        IntList result = new IntList(A.first, null); // 使用A的第一个元素创建新列表
+        IntList temp = result; // 用于遍历和构建新列表
+        A = A.rest; // 移动到A的下一个元素，因为第一个元素已经被添加
+        while (A != null) {
+            temp.rest = new IntList(A.first, null); // 为A的当前元素创建新节点并添加到结果列表
+            temp = temp.rest;
+            A = A.rest;
+        }
+            // 现在A已经完全复制，开始复制B
+        while (B != null) {
+            temp.rest = new IntList(B.first, null); // 为B的当前元素创建新节点并添加到结果列表
+            temp = temp.rest;
+            B = B.rest;
+        }
+        return result;
     }
 
 
