@@ -89,6 +89,14 @@ public class NBody {
             // 增加时间变量
             time += dt;
         }
-    }
 
+        // 打印宇宙的最终状态
+        StdOut.printf("%d\n", planets.length);
+        StdOut.printf("%.2e\n", radius);
+        for (int i = 0; i < planets.length; i++) {
+            StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+                        planets[i].xxPos, planets[i].yyPos, planets[i].xxVel,
+                        planets[i].yyVel, planets[i].mass, planets[i].imgFileName);
+            }
+    }
 }
