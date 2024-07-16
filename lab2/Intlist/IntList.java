@@ -97,9 +97,11 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
+        if (A == null && B == null) {
+            return null; // 如果A和B都是null，直接返回null
+        }
         if (A == null) {
-            IntList result = new IntList(B.first, null);
-            return result;
+            return new IntList(B.first, B.rest); // 如果A是null，直接返回B的一个新复制
         }
         IntList result = new IntList(A.first, null); // 使用A的第一个元素创建新列表
         IntList temp = result; // 用于遍历和构建新列表
@@ -109,7 +111,7 @@ public class IntList {
             temp = temp.rest;
             A = A.rest;
         }
-            // 现在A已经完全复制，开始复制B
+        // 现在A已经完全复制，开始复制B
         while (B != null) {
             temp.rest = new IntList(B.first, null); // 为B的当前元素创建新节点并添加到结果列表
             temp = temp.rest;
