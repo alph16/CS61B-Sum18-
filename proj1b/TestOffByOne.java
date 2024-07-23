@@ -23,4 +23,52 @@ public class TestOffByOne {
         assertFalse(obo.equalChars('a', 'a'));
         assertTrue(obo.equalChars('&', '%'));
     }
+
+    @Test
+    public void testEqualCharsWithUpperCase() {
+        OffByOne obo = new OffByOne();
+        assertTrue(obo.equalChars('B', 'A'));
+        assertTrue(obo.equalChars('M', 'N'));
+        
+        assertFalse(obo.equalChars('G', 'I'));
+        assertFalse(obo.equalChars('X', 'Z'));
+    }
+
+    @Test
+    public void testEqualCharsWithMixedCase() {
+        OffByOne obo = new OffByOne();
+        assertFalse(obo.equalChars('a', 'B'));
+        assertFalse(obo.equalChars('C', 'd'));
+    }
+
+    @Test
+    public void testEqualCharsWithNumbers() {
+        OffByOne obo = new OffByOne();
+
+        assertTrue(obo.equalChars('1', '2'));
+        assertTrue(obo.equalChars('8', '7'));
+        
+        assertFalse(obo.equalChars('0', '9'));
+        assertFalse(obo.equalChars('4', '6'));
+    }
+
+    @Test
+    public void testEqualCharsWithSpecialCharacters() {
+        OffByOne obo = new OffByOne();
+
+        assertTrue(obo.equalChars('#', '$'));
+        assertTrue(obo.equalChars('*', '+'));
+        
+        assertFalse(obo.equalChars('!', '@'));
+        assertFalse(obo.equalChars('[', ']'));
+    }
+
+    @Test
+    public void testEqualCharsWithEdgeCases() {
+        OffByOne obo = new OffByOne();
+
+        // 测试ASCII字符的边界情况
+        assertTrue(obo.equalChars('!', '"'));
+        assertFalse(obo.equalChars('~', '!'));
+    }
 }
